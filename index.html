@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQ-form-validate</title>
+  <meta charset="utf8" />
+  <style>
+    * { margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+    #container { min-height: 100% }
+    .container { max-width: 1200px; padding: 0 20px }
+    label { display: block; }
+    .jqv-error { color: red; display: block; }
+    .navbar .nav > li > a {
+      -webkit-transition: all ease .3s;
+         -moz-transition: all ease .3s;
+           -o-transition: all ease .3s;
+              transition: all ease .3s;
+    }
+    .navbar .nav > li > a:hover {
+        background-color: #000;
+        color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <p>Форма:</p>
+          <form class="validate-form" action="index.html" method="post">
+            <label> Имя *
+              <input type="text" name="name" value="" data-vmsg="Введите имя" class="validate-field">
+            </label>
+            <label> E-mail *
+              <input type="email" name="email" value="" data-vmsg="Введите адрес электронной почты"  class="validate-field">
+            </label>
+            <label> Select *
+              <select name="select" data-vmsg="Выберите пункт"  class="validate-field">
+                <option value="" selected disabled>Выберите из списка</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </label>
+            <label> Text
+              <input type="text" name="text" value="">
+            </label>
+            <input type="submit" value="Отправить">
+          </form>
+        </div>
+        <div class="col-lg-8">
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="js/jquery_3.1.0.min.js"></script>
+  <script type="text/javascript" src="js/validate.js"></script>
+</body>
+</html>
