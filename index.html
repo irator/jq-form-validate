@@ -3,50 +3,45 @@
 <head>
   <title>JQ-form-validate</title>
   <meta charset="utf8" />
-  <style>
-    * { margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
-    #container { min-height: 100% }
-    .container { max-width: 1200px; padding: 0 20px }
-    label, textarea { display: block; }
-    .jqv-error { color: red; display: block; }
-    .navbar .nav > li > a {
-      -webkit-transition: all ease .3s;
-         -moz-transition: all ease .3s;
-           -o-transition: all ease .3s;
-              transition: all ease .3s;
-    }
-    .navbar .nav > li > a:hover {
-        background-color: #000;
-        color: #fff;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <section>
     <div class="container">
+    	<div class="row">
+    		<div class="col-lg-12">
+    			<h1>JQ-form-validate</h1>
+    		</div>
+    	</div>
       <div class="row">
         <div class="col-lg-4">
-          <p>Форма:</p>
+          <h2>Html form:</h2>
           <form class="validate-form" action="index.html" method="post">
-            <label> Имя *
-              <input type="text" name="name" value="" data-vmsg="Введите имя" class="validate-field">
-            </label>
-            <label> E-mail *
+            <div class="form-field">
+              <label> Name * </label>
+              <input type="text" name="name" value="" data-vmsg="Введите имя" class="validate-field" data-vtype="length" data-length="2">
+            </div>
+            <div class="form-field">
+              <label> E-mail * </label>
               <input type="email" name="email" value="" data-vmsg="Введите адрес электронной почты"  class="validate-field">
-            </label>
-            <label> Select *
-              <select name="select" data-vmsg="Выберите пункт"  class="validate-field">
-                <option value="" selected disabled>Выберите из списка</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-              </select>
-            </label>
-            <label> Text
+            </div>
+            <div class="form-field">
+              <label> Select * </label>
+                <select name="select" data-vmsg="Выберите пункт"  class="validate-field">
+                  <option value="" selected disabled>Выберите из списка</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+            </div>
+            <div class="form-field">
+              <label> Text</label>
               <input type="text" name="text" value="">
-            </label>
-            <label> Комментарий *</label>
-            <textarea name="comment" class="validate-field" data-vmsg="Обязательно для заполнения"></textarea>
-            <input type="submit" value="Отправить">
+            </div>
+            <div class="form-field">
+              <label> Comment *</label>
+              <textarea name="comment" class="validate-field" data-vmsg="Обязательно для заполнения"></textarea>
+            </div>
+            <input type="submit" value="Отправить" class="button">
           </form>
         </div>
         <div class="col-lg-8">
