@@ -2,24 +2,13 @@
 #container { min-height: 100% }
 .container { max-width: 1200px; padding: 0 20px; }
 .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 { float: left; position: relative; min-height: 1px; padding-left: 15px; padding-right: 15px; }
-.col-lg-1 { width: 8.33333333%; }
-.col-lg-2 { width: 16.66666667%; }
-.col-lg-3 { width: 25%; }
-.col-lg-4 { width: 33.33333333%; }
-.col-lg-5 { width: 41.66666667%; }
-.col-lg-6 { width: 50%; }
-.col-lg-7 { width: 58.33333333%; }
-.col-lg-8 { width: 66.66666667%; }
-.col-lg-9 { width: 75%; }
-.col-lg-10 { width: 83.33333333%; }
-.col-lg-11 { width: 91.66666667%; }
-.col-lg-12 { width: 100%; }
+.col-lg-1 { width: 8.33333333%; } .col-lg-2 { width: 16.66666667%; } .col-lg-3 { width: 25%; } .col-lg-4 { width: 33.33333333%; } .col-lg-5 { width: 41.66666667%; } .col-lg-6 { width: 50%; } .col-lg-7 { width: 58.33333333%; } .col-lg-8 { width: 66.66666667%; } .col-lg-9 { width: 75%; } .col-lg-10 { width: 83.33333333%; } .col-lg-11 { width: 91.66666667%; } .col-lg-12 { width: 100%; }
 h1 { margin-top: 40px; }
 h2 { margin-top: 20px; }
 label, textarea { display: block; }
 .button { height: 40px; padding: 10px; background: #ec3; border: 1px solid #db2; color: #333; border-radius: 4px; cursor: pointer; }
-.jqv-error { color: red; display: block; position: absolute; z-index: 9999; background: white; padding: 10px; border: 1px solid; border-radius: 4px; }
-.arrow-up { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid red; position: absolute; top: -5px }
+.jqv-error { color: darkcyan; display: block; position: absolute; z-index: 9999; background: white; padding: 10px; border: 1px solid darkcyan; border-radius: 4px; box-shadow: 0 0 8px -1px rgba(0,0,0,0.2); }
+.arrow-up { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid darkcyan; position: absolute; top: -5px }
 #loader { background: url(../img/hourglass.svg) no-repeat center center #fff; background-size: 100px; display: none; height: 100%; left: 0; opacity: 0.7; position: fixed; top: 0; width: 100%; z-index: 99999; }
 .navbar .nav > li > a { -webkit-transition: all ease .3s; -moz-transition: all ease .3s; -o-transition: all ease .3s; transition: all ease .3s; }
 .navbar .nav > li > a:hover { background-color: #000; color: #fff; }
