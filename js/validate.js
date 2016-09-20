@@ -1,7 +1,7 @@
 $(function(){
     $('body').append('<div id="loader"></div>');
     $(document).on('submit','.validate-form',function(){
-        var err, errMsg, showErr, arr = [];
+        var err, errMsg, showErr, arr = [], funcname = '', funcparam = '', minVal, maxVal;
         $(this).find(':input.validate-field').each(function(i, item){
             
             // validate types
@@ -16,6 +16,24 @@ $(function(){
                     showErr = item.value.length >= $(item).data('length') ? 0 : 1;
                     errMsg = 'Минимальное количество символов ' + $(item).data('length');
                     break;
+                case 'num': // numeric
+                    minVal = $(item).data('min') === 'undefined' || !$(item).data('min') ? '' : $(item).data('min'),
+                    maxVal = $(item).data('max') === 'undefined' || !$(item).data('max') ? '' : $(item).data('max'),
+                    ival = item.value.replace( /[^\d.]/g, '' ); //replace(/ /g, '');
+                    if( minVal && minVal > ival ) {
+                        //console.log( 'Значение меньше разрешенного' );
+                        showErr = 1;
+                        minVal = minVal.toString().split('').reverse().join('').match(/.{1,3}/g).join(' ').split('').reverse().join('');
+                        errMsg = 'Значение не должно быть меньше ' + minVal;
+                    }
+                    if( maxVal && maxVal < ival ) {
+                        //console.log( 'Значение больше разрешенного' );
+                        showErr = 1;
+                        maxVal = maxVal.toString().split('').reverse().join('').match(/.{1,3}/g).join(' ').split('').reverse().join('');
+                        errMsg = 'Значение не должно превышать ' + maxVal;
+                    }
+                    //console.log( i + ' Число minVal=' + minVal + ' maxVal=' + maxVal + ' item.val=' + item.value + ' ival=' + ival);
+                    break;
                 case 'depend': // dependence - зависимый / data-vtype="depend" data-parent="parent_id"
                     var parent = $(item).data('parent'), // родитель от значения которого зависит валидация текущего элемента 
                         parentVal = $(item).data('parent-val'); // значение родителя
@@ -27,6 +45,21 @@ $(function(){
                     }
                     errMsg = $(item).data('vmsg');
                     //console.log( i + ' Зависимый от значения другого input' );
+                    break;
+                case 'func':
+                    var equally = $(item).data('equally'), // 
+                        valType = $(item).data('valtype'), // input checked type: checked or val
+                        funcRes = $(item).data('funcres') === 'undefined' ? 1 : $(item).data('funcres'); // if function result true return 1 and change item data-funcres else return 0
+                    if ( !funcRes ) {
+                        funcname = $(item).data('func');
+                        funcparam = $(item).data('funcparam');
+                        if( valType === 'checked' ) {
+                            funcname = $(item).prop('checked') === true && $(item).val() === equally ? funcname : 0;
+                        } else {
+                            funcname = $(item).val() === equally ? funcname : 0;
+                        }
+                    }
+                    showErr = false;
                     break;
                 default:
                     showErr = !item.value ? 1 : 0;
@@ -46,7 +79,6 @@ $(function(){
         
         if ( err === 1 )  {
             var scrollTop = $(arr[0]).offset().top - 100;
-            console.log(scrollTop);
             $('html, body').animate({ scrollTop: scrollTop }, 1000);
             setTimeout(function(){ arr[0].focus(); }, 1000);
             return false;
@@ -54,7 +86,13 @@ $(function(){
             $(this).css({'opacity':'0.4'});
             $(this).find('input[type=submit]').prop('disabled', true);
             $('#loader').fadeIn('fast');
-            return true;
+            if( funcname ) {
+                window[funcname](funcparam);
+                return false;
+            } else {
+                console.log('func empty');
+                return true;
+            }
         }
     });
     $(document).on('change keyup','.validate-field',function(){
